@@ -272,3 +272,9 @@ SELECT name, fertility_rate
 FROM countries
 ORDER BY fertility_rate asc
 LIMIT 3
+
+--Which 10 countries take up most of the world population?
+SELECT name,percent_of_world_pop
+FROM countries
+ORDER BY percent_of_world_pop desc
+LIMIT 10
