@@ -1,0 +1,79 @@
+/* Create table about the people and what they do here */
+--Create table about the people and what they do hereIn this project, you’re going to make your own table with some small set of “famous people”, then make more tables about things they do and join those to create nice human readable lists.
+
+CREATE TABLE movie_stars (id INTEGER PRIMARY KEY, name TEXT, age INTEGER, nationality TEXT);
+
+INSERT INTO movie_stars VALUES (1, "Brad Pitt", 59, "American");
+INSERT INTO movie_stars VALUES (2, "Tom Hanks", 66, "American");
+INSERT INTO movie_stars VALUES (3, "Johnny Depp", 59, "American");
+INSERT INTO movie_stars VALUES (4, "Sandra Bullock", 58, "American");
+INSERT INTO movie_stars VALUES (5, "Meryl Streep", 73, "American");
+INSERT INTO movie_stars VALUES (6, "Steve Carell", 60, "American");
+INSERT INTO movie_stars VALUES (7, "Scarlett Johansson", 38, "American");
+INSERT INTO movie_stars VALUES (8, "Jennifer Lawrence", 32, "American");
+INSERT INTO movie_stars VALUES (9, "Bradley Cooper", 48, "American");
+INSERT INTO movie_stars VALUES (10, "Sydney Sweeney", 25, "American");
+INSERT INTO movie_stars VALUES (11, "Chris Hemsworth", 39, "Australian");
+INSERT INTO movie_stars VALUES (12, "Emily Blunt", 40, "British");
+INSERT INTO movie_stars VALUES (13, "Salma Hayek", 56, "Mexican-American");
+INSERT INTO movie_stars VALUES (14, "Nicole Kidman" ,55, "Australian");
+INSERT INTO movie_stars VALUES (15, "Charlize Theron", 47, "South African");
+
+
+CREATE TABLE movies (id INTEGER PRIMARY KEY, title TEXT, actor_id INTEGER, release_year INTEGER);
+
+INSERT INTO movies VALUES (1, "The Lost City", 1, "2022");
+INSERT INTO movies VALUES (2, "A Man Called Otto", 2, "2023");
+INSERT INTO movies VALUES (3, "Alice In Wonderland", 3, "2010");
+INSERT INTO movies VALUES (4, "The Lost City", 4, "2022");
+INSERT INTO movies VALUES (5, "Don't Look Up", 5, "2021");
+INSERT INTO movies VALUES (6, "Foxcatcher", 6, "2014");
+INSERT INTO movies VALUES (7, "Lost In Translation", 7, "2003");
+INSERT INTO movies VALUES (8, "Silver Linings Playbook", 8, "2012");
+INSERT INTO movies VALUES (9, "Silver Linings Playbook", 9, "2012");
+INSERT INTO movies VALUES (10, "Americana", 10, "2023");
+INSERT INTO movies VALUES (11, "Spiderhead", 11, "2022"); 
+INSERT INTO movies VALUES (12, "The Girl on The Train", 12, "2016");
+INSERT INTO movies VALUES (13, "Dogma", 13, "1999");
+INSERT INTO movies VALUES (14, "Bombshell", 14, "2019");
+INSERT INTO movies VALUES (15, "Bombshell", 15, "2019");
+
+CREATE TABLE wealth (id INTEGER PRIMARY KEY, fullname TEXT, net_worth INTEGER);
+
+INSERT INTO wealth VALUES (1, "Brad Pitt", "400000000");
+INSERT INTO wealth VALUES (2, "Tom Hanks", "400000000");
+INSERT INTO wealth VALUES (3, "Johnny Depp", 
+"150000000");
+INSERT INTO wealth VALUES (4, "Sandra Bullock", "250000000");
+INSERT INTO wealth VALUES (5, "Meryl Streep", "160000000");
+INSERT INTO wealth VALUES (6, "Steve Carell", "80000000");
+INSERT INTO wealth VALUES (7, "Scarlett Johansson", "165000000");
+INSERT INTO wealth VALUES (8, "Jennifer Lawrence", "160000000");
+INSERT INTO wealth VALUES (9, "Bradley Cooper", "100000000");
+INSERT INTO wealth VALUES (10, "Sydney Sweeney", "5000000");
+INSERT INTO wealth VALUES (11, "Chris Hemsworth", "130000000");
+INSERT INTO wealth VALUES (12, "Emily Blunt", "80000000");
+INSERT INTO wealth VALUES (13, "Salma Hayek", "200000000");
+INSERT INTO wealth VALUES (14, "Nicole Kidman", "250000000");
+INSERT INTO wealth VALUES (15, "Charlize Theron","170000000");
+
+
+
+--create a list of all movie stars and a movie they starred in
+SELECT movie_stars.name, movies.title
+FROM movie_stars
+LEFT JOIN movies
+ON movies.actor_id = movie_stars.id 
+
+--list movie stars next to their net worth from highest to lowest
+SELECT movie_stars.name, wealth.net_worth
+FROM movie_stars
+JOIN wealth
+ON movie_stars.name = wealth.fullname
+ORDER BY net_worth DESC
+
+--Return each movie star with their nationality and their net worth
+select  movie_stars.nationality, wealth.net_worth, movie_stars.name
+FROM movie_stars
+JOIN wealth
+ON movie_stars.name = wealth.fullname
