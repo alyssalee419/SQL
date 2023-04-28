@@ -93,3 +93,11 @@ AND length(orderid) = 6
 AND orderid <> 'Order ID'
 GROUP BY location
 HAVING count (orderID)>2
+
+--Which product brought in the most revenue in January and how much revenue did it bring in total?
+
+SELECT sum(Quantity * price) as revenue, Product
+FROM BIT_DB.JanSales
+GROUP BY Product
+ORDER BY total desc
+LIMIT 1
