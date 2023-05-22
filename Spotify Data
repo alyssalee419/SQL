@@ -40,3 +40,18 @@ SELECT artist_name, popularity
 FROM BIT_DB.Spotifydata
 ORDER BY popularity DESC
 LIMIT 10
+
+--3. What artists have the best danceability? List the top 10.
+
+SELECT artist_name, danceability
+FROM BIT_DB.Spotifydata
+ORDER BY danceability DESC
+LIMIT 10
+
+--4. Which track has the highest danceability? Who is the artist?
+
+SELECT artist_name, track_name, danceability
+FROM BIT_DB.Spotifydata
+ORDER BY danceability DESC
+LIMIT 1
+
